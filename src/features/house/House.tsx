@@ -103,12 +103,12 @@ const House = () => {
               setPage(1); 
             },
             options: [
-              { value: "createdAt", label: "Newest First" },
-              { value: "-createdAt", label: "Oldest First" },
-              { value: "price", label: "Price: High to Low" },
-              { value: "-price", label: "Price: Low to High" },
-              { value: "bedrooms", label: "Bedrooms: Most First" },
-              { value: "-bedrooms", label: "Bedrooms: Least First" },
+              { value: "-createdAt", label: "Newest First" },
+              { value: "createdAt", label: "Oldest First" },
+              { value: "-price", label: "Price: High to Low" },
+              { value: "price", label: "Price: Low to High" },
+              { value: "-bedrooms", label: "Bedrooms: Most First" },
+              { value: "bedrooms", label: "Bedrooms: Least First" },
             ],
           },
           {
