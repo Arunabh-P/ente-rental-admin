@@ -52,7 +52,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
     return (
         <div className="w-full flex flex-col sm:flex-row justify-between items-center gap-2 lg:gap-4 mt-6 border border-gray-200 rounded-md lg:rounded-xl p-3 lg:p-5 ">
             <div className="flex items-center gap-2">
-                <label htmlFor="limit" className='text-[12px] md:text-[14px] lg:text-[16px]'>Items per page : </label>
+                <label htmlFor="limit" className='text-[14px] lg:text-[16px]'>Items per page : </label>
                 <div className="relative w-fit">
                     <select
                         id="limit"
@@ -61,7 +61,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
                             onLimitChange(Number(e.target.value));
                             onPageChange(1);
                         }}
-                        className="appearance-none text-[12px] md:text-[12px] lg:text-[14px] px-2 lg:px-3 py-1 bg-white border border-gray-200 rounded pr-6 cursor-pointer max-w-[60px] lg:min-w-[60px]"
+                        className="appearance-none text-[14px] px-2 lg:px-3 py-1 bg-white border border-gray-200 rounded pr-6 cursor-pointer max-w-[60px] lg:min-w-[60px]"
                     >
                         <option value={5}>5</option>
                         <option value={10}>10</option>
@@ -74,7 +74,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
                 <button
                     onClick={() => onPageChange(page - 1)}
                     disabled={page === 1}
-                    className="px-2 lg:px-3 py-1 bg-white border border-gray-200 rounded disabled:opacity-50 text-[12px] md:text-[12px] lg:text-[14px] cursor-pointer disabled:cursor-default"
+                    className="px-2 lg:px-3 py-1 bg-white border border-gray-200 rounded disabled:opacity-50 text-[14px] cursor-pointer disabled:cursor-default"
                 >
                     Prev
                 </button>
@@ -84,7 +84,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
                         key={index}
                         onClick={() => typeof item === 'number' && onPageChange(item)}
                         disabled={item === '...'}
-                        className={`text-[12px] md:text-[12px] lg:text-[14px] px-2 lg:px-3 py-1 rounded ${page === item ? 'bg-black text-white' : 'bg-white border border-gray-200'} ${item === '...' ? 'cursor-default' : 'cursor-pointer'}`}
+                        className={`text-[14px] px-2 lg:px-3 py-1 rounded ${page === item ? 'bg-black text-white' : 'bg-white border border-gray-200'} ${item === '...' ? 'cursor-default' : 'cursor-pointer'}`}
                     >
                         {item}
                     </button>
@@ -92,7 +92,7 @@ const PaginationControls: React.FC<PaginationControlsProps> = ({
                 <button
                     onClick={() => onPageChange(page + 1)}
                     disabled={page === totalPages}
-                    className="px-2 lg:px-3 py-1 bg-white border border-gray-200 rounded disabled:opacity-50 text-[12px] md:text-[12px] lg:text-[14px] cursor-pointer disabled:cursor-default"
+                    className="px-2 lg:px-3 py-1 bg-white border border-gray-200 rounded disabled:opacity-50 text-[14px] cursor-pointer disabled:cursor-default"
                 >
                     Next
                 </button>

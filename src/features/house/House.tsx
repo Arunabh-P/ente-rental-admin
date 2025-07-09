@@ -43,7 +43,7 @@ const House = () => {
 
 
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center justify-center w-full">
 
       <SearchAndFilter
         fields={[
@@ -150,7 +150,7 @@ const House = () => {
 
         ]}
       />
-      <div className="flex flex-wrap justify-around md:justify-around xl:justify-between gap-8 mt-5">
+      <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-5">
         {data?.data?.houses?.map((house) => (
           <HouseCard house={house} key={house._id}/>
         ))}
