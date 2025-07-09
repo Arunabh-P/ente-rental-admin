@@ -10,9 +10,8 @@ const Home = () => {
     setIsOpen(false);
   };
   return (
-    <div className='px-5 md:px-12 lg:px-16 flex flex-col items-center'>
-      <div className='w-full flex justify-between py-5'>
-        <img src="../assets/logo/ente-rental.png" alt="" className='w-[200px]' />
+    <div className=' flex flex-col items-center'>
+      <div className='w-full flex justify-end py-5'>
         <button
           onClick={() => setIsOpen(true)}
           className="border-2 border-black rounded-full text-black px-4 py-2 text-[12px] md:text-[14px] font-medium hover:bg-black hover:text-white cursor-pointer"
