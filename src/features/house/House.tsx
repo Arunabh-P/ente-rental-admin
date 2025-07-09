@@ -107,7 +107,7 @@ const House = () => {
             value: sortBy,
             onChange: (val) => {
               setSortBy(val);
-              setPage(1); // reset pagination if needed
+              setPage(1); 
             },
             options: [
               { value: "createdAt", label: "Newest First" },

@@ -17,7 +17,7 @@ const LoaderBox: React.FC<Props> = ({ isFixed = false, background }) => {
                 }  top-0 left-0 w-full h-full flex justify-center items-center bg-opacity-70 z-50`}
             style={{ zIndex: 900, background: background || 'rgba(255, 255, 255, 0.7)' }}
         >
-            <img src="../../public/assets/logo/house-loading.gif" alt="" className='w-[90px]' />
+            <img src="../assets/logo/house-loading.gif" alt="" className='w-[90px]' />
         </div>
     )
 };
