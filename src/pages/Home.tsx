@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react'
 import House from '../features/house/House'
 import AddHouse from '../features/house/AddHouse'
 import { Drawer } from '../components/drawer'
+import { GrAdd } from 'react-icons/gr'
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const addHouseRef = useRef<any>(null);
@@ -14,9 +15,10 @@ const Home = () => {
       <div className='w-full flex justify-end py-4'>
         <button
           onClick={() => setIsOpen(true)}
-          className="border-2 border-black rounded-full text-black px-4 py-2 text-[12px] md:text-[14px] font-medium hover:bg-black hover:text-white cursor-pointer"
+          className="fixed z-10 flex items-center gap-2 bottom-2 bg-black border-2 border-black rounded-full text-white px-4 py-2 text-[12px] md:text-[14px] font-medium hover:bg-white hover:text-black cursor-pointer"
         >
-          ADD NEW HOUSE DATA
+          <GrAdd />
+          ADD NEW HOUSE DATA 
         </button>
       </div>
       <Drawer position="bottom" isOpen={isOpen} onClose={handleClose}>
