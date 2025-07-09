@@ -20,6 +20,9 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
     formState: { errors } } = useForm<CreateHouseInput>({
       defaultValues: {
         images: [],
+        bachelorsAllowed:false,
+        carParking:false,
+        available:true
       },
     });
   useImperativeHandle(ref, () => ({
@@ -108,9 +111,9 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
 
           <SelectField
             label="Furnishing"
-            name="Furnishing"
-            value={watchedFields.Furnishing || ''}
-            onChange={e => setValue('Furnishing', e.target.value as CreateHouseInput['Furnishing'])}
+            name="furnishing"
+            value={watchedFields.furnishing || ''}
+            onChange={e => setValue('furnishing', e.target.value as CreateHouseInput['furnishing'])}
             options={['full', 'semi', 'no'].map(f => ({
               value: f,
               label: f,
@@ -118,19 +121,19 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
           />
           <InputField
             label="Bedrooms"
-            name="Bedrooms"
+            name="bedrooms"
             type="number"
-            value={watchedFields.Bedrooms || ''}
-            onChange={e => setValue('Bedrooms', parseInt(e.target.value))}
+            value={watchedFields.bedrooms || ''}
+            onChange={e => setValue('bedrooms', parseInt(e.target.value))}
             required
           />
 
           <InputField
             label="Bathrooms"
-            name="Bathrooms"
+            name="bathrooms"
             type="number"
-            value={watchedFields.Bathrooms || ''}
-            onChange={e => setValue('Bathrooms', parseInt(e.target.value))}
+            value={watchedFields.bathrooms || ''}
+            onChange={e => setValue('bathrooms', parseInt(e.target.value))}
             required
           />
         </div>
@@ -139,22 +142,22 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
           <CheckboxField
             name="available"
             label="Available"
-            checked={watchedFields.available || false}
+            checked={watchedFields.available}
             onChange={e => setValue('available', e.target.checked)}
           />
 
           <CheckboxField
-            name="BachelorsAllowed"
+            name="bachelorsAllowed"
             label="Bachelors Allowed"
-            checked={watchedFields.BachelorsAllowed || false}
-            onChange={e => setValue('BachelorsAllowed', e.target.checked)}
+            checked={watchedFields.bachelorsAllowed}
+            onChange={e => setValue('bachelorsAllowed', e.target.checked)}
           />
 
           <CheckboxField
-            name="CarParking"
+            name="carParking"
             label="Car Parking"
-            checked={watchedFields.CarParking || false}
-            onChange={e => setValue('CarParking', e.target.checked)}
+            checked={watchedFields.carParking}
+            onChange={e => setValue('carParking', e.target.checked)}
           />
         </div>
         <MultiImageUploader

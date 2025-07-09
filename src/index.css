@@ -1,1 +1,14 @@
 @import "tailwindcss";
+.range-slider .range-slider__thumb {
+  background-color: black !important;
+  width: 14px !important;
+  height: 14px !important;
+}
+
+.range-slider .range-slider__range {
+  background-color: black !important;
+}
+
+.range-slider {
+    height: 4px !important;
+}

@@ -1,22 +1,22 @@
-import React, { FC } from 'react';
+import React from 'react';
 
-interface SelectOption {
-  value: string;
+interface SelectOption<T = string> {
+  value: T;
   label: string;
 }
 
-interface SelectFieldProps {
+interface SelectFieldProps<T = string> {
   name: string;
-  label: string;
-  value: string;
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
-  options: SelectOption[];
+  label?: string;
+  value: T;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  options: SelectOption<T>[];
   required?: boolean;
   error?: string;
   className?: string;
 }
 
-const SelectField: FC<SelectFieldProps> = ({
+const SelectField = <T extends string | number = string>({
   name,
   label,
   value,
@@ -24,25 +24,24 @@ const SelectField: FC<SelectFieldProps> = ({
   options,
   required = false,
   error,
-  className,
-}) => (
+  className = '',
+}: SelectFieldProps<T>) => (
   <div className="flex flex-col items-start w-full">
-    <p className="font-normal mb-2">{label}</p>
+    {label&&<p className="font-normal mb-2">{label}</p>}
     <select
       name={name}
-      value={value}
+      value={String(value)}
       onChange={onChange}
       required={required}
-      className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${className}`}
+      className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline  ${className}`}
     >
-      <option value="">Select {label}</option>
       {options.map(opt => (
-        <option key={opt.value} value={opt.value}>
+        <option key={String(opt.value)} value={String(opt.value)}  className="checked:bg-black checked:text-white">
           {opt.label}
         </option>
       ))}
     </select>
-    <p className="mt-2 text-red-600">{error}</p>
+    {error && <p className="mt-2 text-red-600">{error}</p>}
   </div>
 );
 

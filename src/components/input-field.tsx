@@ -5,10 +5,11 @@ interface FieldProps {
   name: string;
   value: string | number;
   onChange: React.ChangeEventHandler<HTMLInputElement>;
-  label: string;
+  label?: string;
   required?: boolean;
   error?: string;
   className?: string;
+  placeholder?:string;
 }
 const InputField: FC<FieldProps> = ({
   name,
@@ -18,10 +19,10 @@ const InputField: FC<FieldProps> = ({
   required = false,
   label,
   error,
-  className,
+  className,placeholder
 }) => (
   <div className="flex flex-col items-start w-full">
-    <p className="font-normal mb-2 ">{label}</p>
+   {label&& <p className="font-normal mb-2 ">{label}</p>}
     <input
       className={`shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${className}`}
       type={type}
@@ -29,8 +30,9 @@ const InputField: FC<FieldProps> = ({
       value={value}
       onChange={onChange}
       required={required}
+      placeholder={placeholder}
     />
-    <p className="mt-2 text-red-600">{error}</p>
+    {error &&<p className="mt-2 text-red-600">{error}</p>}
   </div>
 );
 

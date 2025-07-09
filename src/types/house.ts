@@ -10,11 +10,11 @@ export interface House {
     available: boolean;
     images: string[];
     propertyType: houseCategory;
-    Furnishing: furnishCategory;
-    BachelorsAllowed: boolean;
-    CarParking: boolean;
-    Bedrooms: number;
-    Bathrooms: number;
+    furnishing: furnishCategory;
+    bachelorsAllowed: boolean;
+    carParking: boolean;
+    bedrooms: number;
+    bathrooms: number;
     createdAt: string;
     updatedAt: string;
 }
