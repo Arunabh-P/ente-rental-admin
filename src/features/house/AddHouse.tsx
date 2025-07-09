@@ -8,8 +8,13 @@ import MultiImageUploader from '../../components/multi-photo-upload';
 import { useUploadHousePhotoMutation } from '../../services/uploadPhotoApi';
 import TextArea from '../../components/text-area';
 import { forwardRef, useImperativeHandle } from 'react';
+import { useDispatch } from 'react-redux';
+import { hideLoader, showLoader } from '../../app/loader-slice';
 
-const AddHouse =forwardRef((props, ref)  => {
+type AddHouseProps = {
+  onClose: () => void
+}
+const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
   const { register, handleSubmit, reset, setValue, getValues,
     watch,
     formState: { errors } } = useForm<CreateHouseInput>({
@@ -20,30 +25,36 @@ const AddHouse =forwardRef((props, ref)  => {
   useImperativeHandle(ref, () => ({
     resetForm: () => reset(),
   }));
+  const dispatch = useDispatch();
   const [createHouse, { isLoading, isSuccess, isError }] = useCreateHouseMutation();
   const [uploadPhoto] = useUploadHousePhotoMutation();
   const onSubmit = async (data: CreateHouseInput) => {
     try {
+      dispatch(showLoader());
       await createHouse(data).unwrap();
-      alert('House created successfully!');
       reset();
+      onClose();
     } catch (error) {
-      alert('Something went wrong.');
+      onClose()
+    } finally {
+      dispatch(hideLoader());
     }
   };
   const watchedFields = watch();
   const watchedImages = watch('images') || [];
-  const images = getValues('images')
   const handleImageCropped = async (blob: Blob) => {
     const formData = new FormData();
     const file = new File([blob], 'house-image.jpg', { type: 'image/jpeg' });
     formData.append('file', file);
     try {
+      dispatch(showLoader());
       const uploadRes = await uploadPhoto(formData).unwrap();
       const imageUrl = uploadRes.data.url;
       setValue('images', [...watchedImages, imageUrl]);
     } catch (err) {
       console.error(err);
+    } finally {
+      dispatch(hideLoader());
     }
   };
   return (
