@@ -1,11 +1,13 @@
-import { useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useGetAllHousesQuery } from "../../services/houseApi";
 import PaginationControls from "../../components/pagination-control";
 import { useDebounce } from "../../helpers/use-debounce";
 import SearchAndFilter from "../../components/search-and-filter";
 import HouseCard from "./house-card";
-
-const House = () => {
+type HouseProps ={
+  filterOpen:boolean
+}
+const House:FC<HouseProps> = ({filterOpen}) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [searchValue, setSearchValue] = useState("");
@@ -40,12 +42,16 @@ const House = () => {
   const handleChangeLimit = (limit: number) => {
     setLimit(limit);
   };
-
+ useEffect(() => {
+    if (filterOpen) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [filterOpen]);
 
   return (
     <div className="flex flex-col items-center justify-center w-full">
 
-      <SearchAndFilter
+     {filterOpen && <SearchAndFilter
         fields={[
           {
             type: "search",
@@ -149,7 +155,7 @@ const House = () => {
 
 
         ]}
-      />
+      />}
       <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-5">
         {data?.data?.houses?.map((house) => (
           <HouseCard house={house} key={house._id}/>
