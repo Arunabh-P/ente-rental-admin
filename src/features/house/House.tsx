@@ -3,11 +3,12 @@ import { useGetAllHousesQuery } from "../../services/houseApi";
 import PaginationControls from "../../components/pagination-control";
 import { useDebounce } from "../../helpers/use-debounce";
 import SearchAndFilter from "../../components/search-and-filter";
-import HouseCard from "./house-card";
-type HouseProps ={
-  filterOpen:boolean
+import HouseCard from "../../components/house-card";
+import HouseCardSkelton from "../../components/skeletons/house-card";
+type HouseProps = {
+  filterOpen: boolean
 }
-const House:FC<HouseProps> = ({filterOpen}) => {
+const House: FC<HouseProps> = ({ filterOpen }) => {
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
   const [searchValue, setSearchValue] = useState("");
@@ -16,11 +17,15 @@ const House:FC<HouseProps> = ({filterOpen}) => {
   const [carParking, setCarParking] = useState(false);
   const [bachelorsAllowed, setBachelorsAllowed] = useState(false);
   const [available, setAvailable] = useState(false);
-  const [sortBy, setSortBy] = useState("createdAt");
+  const [sortBy, setSortBy] = useState("-createdAt");
   const [range, setRange] = useState<[number, number]>([100, 800]);
   const debouncedRange = useDebounce(range, 500);
   const debouncedSearchValue = useDebounce(searchValue, 1000);
-
+  useEffect(() => {
+    if (filterOpen) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [filterOpen]);
   const { data, isLoading, error } = useGetAllHousesQuery({
     page,
     limit,
@@ -33,7 +38,12 @@ const House:FC<HouseProps> = ({filterOpen}) => {
     priceMin: debouncedRange[0],
     priceMax: debouncedRange[1],
   });
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-5">
+    {[1, 2, 3, 4,5,6].map((_, index) => (
+  <HouseCardSkelton key={index} />
+))}
+
+  </div>;
   if (error) return <p>Error fetching houses</p>;
   const totalItems = data?.data?.total || 0;
   const handleChangePage = (page: number) => {
@@ -42,16 +52,10 @@ const House:FC<HouseProps> = ({filterOpen}) => {
   const handleChangeLimit = (limit: number) => {
     setLimit(limit);
   };
- useEffect(() => {
-    if (filterOpen) {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  }, [filterOpen]);
-
   return (
     <div className="flex flex-col items-center justify-center w-full">
 
-     {filterOpen && <SearchAndFilter
+      {filterOpen && <SearchAndFilter
         fields={[
           {
             type: "search",
@@ -106,7 +110,7 @@ const House:FC<HouseProps> = ({filterOpen}) => {
             value: sortBy,
             onChange: (val) => {
               setSortBy(val);
-              setPage(1); 
+              setPage(1);
             },
             options: [
               { value: "-createdAt", label: "Newest First" },
@@ -158,7 +162,7 @@ const House:FC<HouseProps> = ({filterOpen}) => {
       />}
       <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-5">
         {data?.data?.houses?.map((house) => (
-          <HouseCard house={house} key={house._id}/>
+          <HouseCard house={house} key={house._id} />
         ))}
       </div>
       <PaginationControls

@@ -7,11 +7,12 @@ import { LuFilter } from 'react-icons/lu'
 const Home = () => {
   const [isOpen, setIsOpen] = useState(false);
   const addHouseRef = useRef<any>(null);
+  const [filterOpen,setFilterOpen]= useState(false)
+
   const handleClose = () => {
     addHouseRef.current?.resetForm?.();
     setIsOpen(false);
   };
-  const [filterOpen,setFilterOpen]= useState(false)
   const handleOpenFilter = ()=>{
     setFilterOpen(!filterOpen)
   }

@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
-import { House } from '../../types/house'
+import { House } from '../types/house'
 import { CiLocationArrow1 } from 'react-icons/ci'
-import AvailableItems from '../../components/available-item'
+import AvailableItems from './available-item'
 type houseProps = {
     house: House
 }
