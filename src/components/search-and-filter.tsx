@@ -47,7 +47,7 @@ type Props = {
 };
 
 const SearchAndFilter: React.FC<Props> = ({ fields }) => (
-    <div className="w-full border border-gray-200 rounded-md lg:rounded-xl p-3 lg:p-5">
+    <div className="w-full border border-gray-200 rounded-md lg:rounded-xl p-3 lg:p-5 mb-5">
         <div className='w-full flex flex-wrap flex-col sm:flex-row justify-start items-center gap-2 lg:gap-6'>
             {fields.map((field) => {
                 if (field.type === 'search') {

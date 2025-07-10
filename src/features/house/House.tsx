@@ -38,7 +38,7 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
     priceMin: debouncedRange[0],
     priceMax: debouncedRange[1],
   });
-  if (isLoading) return <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-5">
+  if (isLoading) return <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
     {[1, 2, 3, 4,5,6].map((_, index) => (
   <HouseCardSkelton key={index} />
 ))}
@@ -160,7 +160,7 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
 
         ]}
       />}
-      <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 mt-5">
+      <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8 ">
         {data?.data?.houses?.map((house) => (
           <HouseCard house={house} key={house._id} />
         ))}
