@@ -1,4 +1,15 @@
 @import "tailwindcss";
+
+@layer components {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 .range-slider .range-slider__thumb {
   background-color: black !important;
   width: 14px !important;
@@ -12,3 +23,4 @@
 .range-slider {
     height: 4px !important;
 }
+

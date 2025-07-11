@@ -8,24 +8,24 @@ const facingDirections = [
 ] as const;
 
 export const createHouseSchema = yup.object({
-  title: yup.string().required('Title is required'),
-  description: yup.string().required('Description is required'),
-  location: yup.string().required('Location is required'),
-  price: yup.number().required('Price is required').min(0),
+  title: yup.string().required('Please enter Title'),
+  description: yup.string().required('Please enter Description').min(100,'Please enter a description of 100 or more'),
+  location: yup.string().required('Please enter a Location'),
+  price: yup.number().required('Please enter a Price').min(0),
   available: yup.boolean().required(),
   images: yup
     .array()
     .of(yup.string().required().url('Invalid image URL'))
-    .min(1, 'At least one image is required')
-    .required('Images are required'),
+    .min(1, 'Add at least one image')
+    .required('Add at least one image'),
   propertyType: yup
     .string()
-    .oneOf(houseCategories, 'Invalid property type')
-    .required('Property type is required'),
+    .oneOf(houseCategories, 'Please Select Property Type')
+    .required('Please Select Property Type'),
   furnishing: yup
     .string()
-    .oneOf(furnishCategories, 'Invalid furnishing type')
-    .required('Furnishing is required'),
+    .oneOf(furnishCategories, 'Please Select furnishing type')
+    .required('Please Select Furnishing'),
 
   bachelorsAllowed: yup.boolean().required(),
   carParking: yup.boolean().required(),
@@ -36,18 +36,20 @@ export const createHouseSchema = yup.object({
     .defined()
     .when('carParking', {
       is: true,
-      then: schema => schema.required().min(1),
+      then: schema =>   schema
+        .required('Please enter the number of car parking spots.')
+        .min(1, 'Please enter the number of car parking spots.'),
       otherwise: schema => schema.nullable(),
     }),
 
-  builtUpAreaSqFt: yup.number().required().min(100),
-  carpetAreaSqFt: yup.number().nullable().defined().min(50),
-  totalFloors: yup.number().nullable().defined().min(1),
+  builtUpAreaSqFt: yup.number().required('Please enter built up ara SqFt').min(100, 'Value must be at least 100.'),
+  carpetAreaSqFt: yup.number().nullable().defined().min(50, 'Value must be at least 50.'),
+  totalFloors: yup.number().nullable().defined().min(1, 'Value must be at least 1.'),
   floorNumber: yup.number().nullable().defined().min(0),
   ageOfProperty: yup.number().nullable().defined().min(0),
 
   facing: yup.string().oneOf(facingDirections).nullable().defined(),
 
-  bedrooms: yup.string().required('Number of bedrooms is required'),
-  bathrooms: yup.string().required('Number of bathrooms is required'),
+  bedrooms: yup.string().required('please enter Number of bedrooms'),
+  bathrooms: yup.string().required('please enter Number of bathrooms'),
 });

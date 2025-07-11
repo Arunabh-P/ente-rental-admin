@@ -36,7 +36,7 @@ export const Drawer: FC<DrawerProps> = ({
     <>
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+          className="fixed inset-0  bg-opacity-50 z-40 transition-opacity"
           onClick={onClose}
         />
       )}
@@ -49,7 +49,7 @@ export const Drawer: FC<DrawerProps> = ({
           <div className="flex justify-between items-center my-[20px] md:m-0 md:mb-4">
             <button
               onClick={onClose}
-              className="text-green-800 font-semibold h-[30px] w-[30px] cursor-pointer"
+              className="text-black font-semibold h-[30px] w-[30px] cursor-pointer"
             >
               ✕
             </button>

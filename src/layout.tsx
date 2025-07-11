@@ -10,7 +10,7 @@ const Layout: FC<layoutProps> = ({ children }) => {
         <>
             <LoaderBox isFixed />
             <Header />
-            <div className='px-5 md:px-12 lg:px-16 2xl:px-[96px]'>
+            <div className='px-5 md:px-12 lg:px-16 2xl:px-[96px] '>
                 {children}
                 <Footer />
             </div>

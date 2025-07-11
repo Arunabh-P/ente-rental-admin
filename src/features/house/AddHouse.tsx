@@ -35,18 +35,18 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
     watch,
     formState: { errors },
   } = useForm<CreateHouseInput>({
-     resolver: yupResolver(createHouseSchema),
+    resolver: yupResolver(createHouseSchema),
     defaultValues: {
       images: [],
       bachelorsAllowed: false,
       carParking: false,
       available: true,
-      carParkingCount:null,
-        carpetAreaSqFt:  null,
-        totalFloors:  null,
-        floorNumber:  null,
-        ageOfProperty:  null,
-        facing:  null,
+      carParkingCount: null,
+      carpetAreaSqFt: null,
+      totalFloors: null,
+      floorNumber: null,
+      ageOfProperty: null,
+      facing: null,
     },
   });
   useImperativeHandle(ref, () => ({
@@ -88,15 +88,14 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
   return (
     <div className="w-full mx-auto p-6 ">
       <h2 className="text-2xl font-bold mb-6">Add New House</h2>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-2">
         <div className="grid grid-cols-1 md:grid-cols-2  gap-5 ">
           <InputField
             label="Title"
             name="title"
             value={watchedFields.title || ""}
             onChange={(e) => setValue("title", e.target.value)}
-            
-             error={errors.title?.message}
+            error={errors.title?.message}
           />
           <TextArea
             label="Description"
@@ -104,8 +103,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             rows={4}
             value={watchedFields.description || ""}
             onChange={(e) => setValue("description", e.target.value)}
-             error={errors.description?.message}
-
+            error={errors.description?.message}
           />
         </div>
 
@@ -123,8 +121,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             type="number"
             value={watchedFields.price || ""}
             onChange={(e) => setValue("price", parseFloat(e.target.value))}
-             error={errors.price?.message}
-
+            error={errors.price?.message}
           />
           <SelectField
             label="Property Type"
@@ -137,8 +134,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
               )
             }
             options={houseType}
-             error={errors.propertyType?.message}
-
+            error={errors.propertyType?.message}
           />
 
           <SelectField
@@ -152,8 +148,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
               )
             }
             options={furnishCategory}
-             error={errors.furnishing?.message}
-
+            error={errors.furnishing?.message}
           />
           <SelectField
             label="Bedrooms"
@@ -166,8 +161,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
               )
             }
             options={rooms}
-             error={errors.bedrooms?.message}
-
+            error={errors.bedrooms?.message}
           />
 
           <SelectField
@@ -181,8 +175,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
               )
             }
             options={rooms}
-             error={errors.bathrooms?.message}
-
+            error={errors.bathrooms?.message}
           />
           <InputField
             label="Built-up Area (sq. ft.)"
@@ -192,8 +185,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             onChange={(e) =>
               setValue("builtUpAreaSqFt", parseFloat(e.target.value))
             }
-             error={errors.builtUpAreaSqFt?.message}
-
+            error={errors.builtUpAreaSqFt?.message}
           />
           <InputField
             label="Carpet Area (sq. ft.)"
@@ -203,8 +195,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             onChange={(e) =>
               setValue("carpetAreaSqFt", parseFloat(e.target.value))
             }
-             error={errors.carpetAreaSqFt?.message}
-
+            error={errors.carpetAreaSqFt?.message}
           />
           <InputField
             label="Total Floors"
@@ -212,8 +203,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             type="number"
             value={watchedFields.totalFloors || ""}
             onChange={(e) => setValue("totalFloors", parseInt(e.target.value))}
-             error={errors.totalFloors?.message}
-
+            error={errors.totalFloors?.message}
           />
           <InputField
             label="Floor Number"
@@ -221,8 +211,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             type="number"
             value={watchedFields.floorNumber || ""}
             onChange={(e) => setValue("floorNumber", parseInt(e.target.value))}
-             error={errors.floorNumber?.message}
-
+            error={errors.floorNumber?.message}
           />
 
           <InputField
@@ -233,8 +222,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             onChange={(e) =>
               setValue("ageOfProperty", parseInt(e.target.value))
             }
-             error={errors.ageOfProperty?.message}
-
+            error={errors.ageOfProperty?.message}
           />
           <SelectField
             label="Facing"
@@ -244,8 +232,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
               setValue("facing", e.target.value as CreateHouseInput["facing"])
             }
             options={facing}
-             error={errors.facing?.message}
-
+            error={errors.facing?.message}
           />
         </div>
 
@@ -255,8 +242,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             label="Available"
             checked={watchedFields.available}
             onChange={(e) => setValue("available", e.target.checked)}
-             error={errors.available?.message}
-
+            error={errors.available?.message}
           />
 
           <CheckboxField
@@ -264,8 +250,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             label="Bachelors Allowed"
             checked={watchedFields.bachelorsAllowed}
             onChange={(e) => setValue("bachelorsAllowed", e.target.checked)}
-             error={errors.bachelorsAllowed?.message}
-
+            error={errors.bachelorsAllowed?.message}
           />
 
           <CheckboxField
@@ -273,22 +258,22 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
             label="Car Parking"
             checked={watchedFields.carParking}
             onChange={(e) => setValue("carParking", e.target.checked)}
-                         error={errors.carParking?.message}
-
+            error={errors.carParking?.message}
           />
         </div>
         {watchedFields.carParking && (
-          <InputField
-            label="Car Parking Count"
-            name="carParkingCount"
-            type="number"
-            value={watchedFields.carParkingCount || ""}
-            onChange={(e) =>
-              setValue("carParkingCount", parseInt(e.target.value))
-            }
-                         error={errors.carParkingCount?.message}
-
-          />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <InputField
+              label="Car Parking Count"
+              name="carParkingCount"
+              type="number"
+              value={watchedFields.carParkingCount || ""}
+              onChange={(e) =>
+                setValue("carParkingCount", parseInt(e.target.value))
+              }
+              error={errors.carParkingCount?.message}
+            />
+          </div>
         )}
         <MultiImageUploader
           images={watchedImages}
@@ -296,14 +281,15 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
           onImageCropped={handleImageCropped}
         />
         <p>{errors.images?.message}</p>
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
-          disabled={isLoading}
-        >
-          {isLoading ? "Submitting..." : "Add House"}
-        </button>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <button
+            type="submit"
+            className="mt-2 w-full uppercase gap-2  bg-black border-2 border-black rounded-lg text-white p-2 text-[16px] md:text-[18px] font-medium hover:bg-white hover:text-black cursor-pointer"
+            disabled={isLoading}
+          >
+            {isLoading ? "Submitting..." : "Add House"}
+          </button>
+        </div>
       </form>
     </div>
   );

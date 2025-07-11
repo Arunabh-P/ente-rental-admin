@@ -38,12 +38,11 @@ const MultiImageUploader: React.FC<MultiImageUploaderProps> = ({
   };
 
   return (
-    <div className="space-y-4">
-      <p className="font-medium mb-2">Upload House Images</p>
-
-      <div className="flex gap-3 flex-wrap">
+    <div >
+      <p className="font-medium">Upload House Images</p>
+      <div className="flex gap-3 flex-wrap mb-3">
         {images.map((img, i) => (
-          <div key={i} className="relative group w-24 h-24">
+          <div key={i} className="relative group w-24 h-24 ">
             <img src={img} alt={`Image ${i}`} className="rounded-md object-cover w-full h-full" />
             <button
               type="button"

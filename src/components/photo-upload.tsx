@@ -12,7 +12,7 @@ const PhotoUpload: React.FC<ImageUploadSectionProps> = ({
   handleImageChange,
 }) => (
   <div>
-    <div className="mt-1 flex items-center justify-start pb-5">
+    <div className="mt-1 flex items-center justify-start">
       <div className="relative">
         <input
           type="file"
