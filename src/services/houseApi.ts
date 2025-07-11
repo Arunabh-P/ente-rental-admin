@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../utils/envVariables";
-import { PaginatedHouseResponse } from "../types/house";
+import { HouseResponse, PaginatedHouseResponse } from "../types/house";
 
 export const houseApi = createApi({
     reducerPath: 'houseApi',
@@ -18,6 +18,11 @@ export const houseApi = createApi({
         getHouseById: builder.query({
             query: (id) => `${id}`,
             providesTags: (result, error, id) => [{ type: "House", id }]
+        }),
+        getHouseBySlug: builder.query({
+            query: (slug) => `single/${slug}`,
+            providesTags: (result, error, slug) => [{ type: "House", id: slug }],
+            transformResponse: (response: HouseResponse) => response.data,
         }),
         createHouse: builder.mutation({
             query: (newHouse) => ({
@@ -45,4 +50,4 @@ export const houseApi = createApi({
     })
 })
 
-export const { useGetAllHousesQuery, useGetHouseByIdQuery, useCreateHouseMutation, useUpdateHouseMutation, useUploadPhotoMutation } = houseApi
+export const { useGetAllHousesQuery, useGetHouseByIdQuery, useCreateHouseMutation, useUpdateHouseMutation, useUploadPhotoMutation,useGetHouseBySlugQuery } = houseApi

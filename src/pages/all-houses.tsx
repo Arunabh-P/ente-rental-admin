@@ -4,7 +4,7 @@ import AddHouse from '../features/house/AddHouse'
 import { Drawer } from '../components/drawer'
 import { GrAdd } from 'react-icons/gr'
 import { LuFilter } from 'react-icons/lu'
-const Home = () => {
+const AllHouses = () => {
   const [isOpen, setIsOpen] = useState(false);
   const addHouseRef = useRef<any>(null);
   const [filterOpen,setFilterOpen]= useState(false)
@@ -23,7 +23,7 @@ const Home = () => {
           <button onClick={handleOpenFilter} className='flex items-center gap-2  bg-black border-2 border-black rounded-full text-white p-3 text-[16px] md:text-[18px] font-medium hover:bg-white hover:text-black cursor-pointer'>
             <LuFilter />
           </button>
-          <button onClick={() => setIsOpen(true)} className='flex items-center gap-2  bg-black border-2 border-black rounded-full text-white px-4 py-2 text-[12px] md:text-[14px] font-medium hover:bg-white hover:text-black cursor-pointer'>
+          <button onClick={() => setIsOpen(true)} className='flex items-center gap-2  bg-black border-2 border-black rounded-full text-white px-4 py-1 text-[12px] md:text-[14px] font-medium hover:bg-white hover:text-black cursor-pointer'>
             <GrAdd />
             ADD NEW HOUSE
           </button>
@@ -37,4 +37,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default AllHouses

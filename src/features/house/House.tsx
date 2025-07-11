@@ -5,6 +5,7 @@ import { useDebounce } from "../../helpers/use-debounce";
 import SearchAndFilter from "../../components/search-and-filter";
 import HouseCard from "../../components/house-card";
 import HouseCardSkelton from "../../components/skeletons/house-card";
+import { furnishCategory, houseType } from "../../constants/house";
 type HouseProps = {
   filterOpen: boolean
 }
@@ -39,9 +40,9 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
     priceMax: debouncedRange[1],
   });
   if (isLoading) return <div className="w-full sm:w-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8">
-    {[1, 2, 3, 4,5,6].map((_, index) => (
-  <HouseCardSkelton key={index} />
-))}
+    {[1, 2, 3, 4, 5, 6].map((_, index) => (
+      <HouseCardSkelton key={index} />
+    ))}
 
   </div>;
   if (error) return <p>Error fetching houses</p>;
@@ -52,6 +53,8 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
   const handleChangeLimit = (limit: number) => {
     setLimit(limit);
   };
+  const houseOptions = [{ value: "", label: "All Type Properties" }, ...houseType]
+  const furnishOptions = [{ value: "", label: "All Type Furnished" }, ...furnishCategory]
   return (
     <div className="flex flex-col items-center justify-center w-full">
 
@@ -77,15 +80,7 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
               setPropertyType(val);
               setPage(1);
             },
-            options: [
-              { value: "", label: "All Type Properties" },
-              { value: "1RK", label: "1RK" },
-              { value: "Studio", label: "Studio" },
-              { value: "1BHK", label: "1BHK" },
-              { value: "2BHK", label: "2BHK" },
-              { value: "3BHK", label: "3BHK" },
-              { value: "4BHK", label: "4BHK" },
-            ],
+            options: houseOptions,
           },
           {
             type: "select",
@@ -96,12 +91,7 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
               setFurnishing(val);
               setPage(1);
             },
-            options: [
-              { value: "", label: "All Type Furnished" },
-              { value: "full", label: "Fully Furnished" },
-              { value: "semi", label: "Semi Furnished" },
-              { value: "no", label: "Not furnished" },
-            ],
+            options: furnishOptions,
           },
           {
             type: "select",
@@ -117,8 +107,6 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
               { value: "createdAt", label: "Oldest First" },
               { value: "-price", label: "Price: High to Low" },
               { value: "price", label: "Price: Low to High" },
-              { value: "-bedrooms", label: "Bedrooms: Most First" },
-              { value: "bedrooms", label: "Bedrooms: Least First" },
             ],
           },
           {
