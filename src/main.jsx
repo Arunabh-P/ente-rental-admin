@@ -8,7 +8,11 @@ import LoaderBox from './components/loader.js'
 import Layout from './layout.js'
 
 createRoot(document.getElementById('root')).render(
+  <StrictMode>
     <Provider store={store}>
+      <Layout>
         <App />
+      </Layout>
     </Provider>
+  </StrictMode>,
 )
