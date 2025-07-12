@@ -8,8 +8,8 @@ const facingDirections = [
 ] as const;
 
 export const createHouseSchema = yup.object({
-  title: yup.string().required('Please enter Title'),
-  description: yup.string().required('Please enter Description').min(100,'Please enter a description of 100 or more'),
+  title: yup.string().required('Please enter Title') .min(3, 'Please enter a description of 3 or more').max(80,'max 80 charectors'),
+  description: yup.string().required('Please enter Description').min(100,'Please enter a description of 100 or more').max(1000,'max 1000 charectors'),
   location: yup.string().required('Please enter a Location'),
   price: yup.number().required('Please enter a Price').min(0),
   available: yup.boolean().required(),

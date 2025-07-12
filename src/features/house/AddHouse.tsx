@@ -280,7 +280,7 @@ const AddHouse = forwardRef(({ onClose }: AddHouseProps, ref) => {
           onImagesChange={(imgs) => setValue("images", imgs)}
           onImageCropped={handleImageCropped}
         />
-        <p>{errors.images?.message}</p>
+        <p className="text-red-600">{errors.images?.message}</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           <button
             type="submit"
