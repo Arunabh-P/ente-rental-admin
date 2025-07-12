@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { baseUrl } from "../utils/envVariables";
 import { HouseResponse, PaginatedHouseResponse } from "../types/house";
+import { showToast } from "../app/tost-slice";
 
 export const houseApi = createApi({
     reducerPath: 'houseApi',
@@ -30,7 +31,15 @@ export const houseApi = createApi({
                 method: "POST",
                 body: newHouse
             }),
-            invalidatesTags: ['House']
+            invalidatesTags: ['House'],
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(showToast({ title: 'Success', message: 'House details added successfully' }));
+                } catch (error: any) {
+                    dispatch(showToast({ title: 'Error', message: error?.error || 'Failed to add house details' }));
+                }
+            },
         }),
         updateHouse: builder.mutation({
             query: ({ id, ...data }) => ({
@@ -38,16 +47,32 @@ export const houseApi = createApi({
                 method: 'PUT',
                 body: data
             }),
-            invalidatesTags: (result, error, { id }) => [{ type: "House", id }]
+            invalidatesTags: (result, error, { id }) => [{ type: "House", id }],
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(showToast({ title: 'Success', message: 'House details updated successfully' }));
+                } catch (error: any) {
+                    dispatch(showToast({ title: 'Error', message: error?.error || 'Failed to update house details' }));
+                }
+            },
         }),
         uploadPhoto: builder.mutation({
             query: (FormData) => ({
                 url: 'upload-photo/house',
                 method: "POST",
                 body: FormData
-            })
+            }),
+            async onQueryStarted(arg, { dispatch, queryFulfilled }) {
+                try {
+                    await queryFulfilled;
+                    dispatch(showToast({ title: 'Success', message: 'House details updated successfully' }));
+                } catch (error: any) {
+                    dispatch(showToast({ title: 'Error', message: error?.error || 'Failed to update house details' }));
+                }
+            },
         })
     })
 })
 
-export const { useGetAllHousesQuery, useGetHouseByIdQuery, useCreateHouseMutation, useUpdateHouseMutation, useUploadPhotoMutation,useGetHouseBySlugQuery } = houseApi
+export const { useGetAllHousesQuery, useGetHouseByIdQuery, useCreateHouseMutation, useUpdateHouseMutation, useUploadPhotoMutation, useGetHouseBySlugQuery } = houseApi

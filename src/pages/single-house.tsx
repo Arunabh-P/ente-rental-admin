@@ -2,8 +2,6 @@ import { useParams } from "react-router-dom";
 import { useGetHouseBySlugQuery } from "../services/houseApi";
 import ImageSlider from "../components/image-slider";
 import HouseDetails from "../components/house-details";
-import { BiEditAlt } from "react-icons/bi";
-import { useState } from "react";
 import ImageSliderSkelton from "../components/skeletons/image-slider";
 import HouseDetailSkelton from "../components/skeletons/house-details";
 
