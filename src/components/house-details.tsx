@@ -4,6 +4,8 @@ import { CiLocationArrow1 } from "react-icons/ci";
 import { MdCurrencyRupee } from "react-icons/md";
 import { House } from "../types/house";
 import { BiEditAlt } from "react-icons/bi";
+import UpdateHouse from "../features/house/UpdateHouse";
+import { Drawer } from "./drawer";
 type HouseDetailsProps = {
   data: House;
 };
@@ -12,8 +14,14 @@ const HouseDetails: FC<HouseDetailsProps> = ({ data }) => {
   const handleOpenEditor = () => {
     setOpenEditor(true);
   };
+  const handleCloseEditor = () => {
+    setOpenEditor(false);
+  };
   return (
     <div className="text-start w-full lg:w-1/2">
+      <Drawer position="bottom" isOpen={openEditor} onClose={handleCloseEditor}>
+        <UpdateHouse houseData={data}  onClose={handleCloseEditor} />
+      </Drawer>
       <h1 className="font-medium text-[16px] md:text-[18px] lg:text-[20px] xl:text-[22px] capitalize xl:mt-3">
         {data?.title}
       </h1>

@@ -61,5 +61,5 @@ export interface HouseResponse {
 export interface CreateHouseInput
   extends Omit<House, "_id" | "createdAt" | "updatedAt" | "slug"> {}
 export interface UpdateHouseInput extends Partial<CreateHouseInput> {
-  id: string;
+  _id: string;
 }
