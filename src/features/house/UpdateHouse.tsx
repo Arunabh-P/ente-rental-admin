@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import {
-  useUpdateHouseMutation,
-  useUploadPhotoMutation,
+  useUpdateHouseMutation
 } from "../../services/houseApi";
 import { CreateHouseInput, UpdateHouseInput } from "../../types/house";
 import InputField from "../../components/input-field";
@@ -9,12 +8,13 @@ import SelectField from "../../components/select-field";
 import CheckboxField from "../../components/check-box";
 import MultiImageUploader from "../../components/multi-photo-upload";
 import TextArea from "../../components/text-area";
-import { forwardRef, useEffect, useImperativeHandle } from "react";
+import { forwardRef, useImperativeHandle } from "react";
 import { useDispatch } from "react-redux";
 import { hideLoader, showLoader } from "../../app/loader-slice";
 import { facing, furnishCategory, houseType, rooms } from "../../constants/house";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { createHouseSchema } from "../../validations/house";
+import { useUploadHousePhotoMutation } from "../../services/uploadPhotoApi";
 
 // Utility to clean fields not allowed in form submission
 const sanitizeHouseData = (data: any) => {
@@ -48,7 +48,7 @@ const UpdateHouse = forwardRef(({ houseData, onClose }: UpdateHouseProps, ref) =
 
   const dispatch = useDispatch();
   const [updateHouse, { isLoading }] = useUpdateHouseMutation();
-  const [uploadPhoto] = useUploadPhotoMutation();
+  const [uploadPhoto] = useUploadHousePhotoMutation();
 
   const onSubmit = async (data: CreateHouseInput) => {
     try {

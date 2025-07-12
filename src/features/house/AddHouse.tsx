@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import {
   useCreateHouseMutation,
-  useUploadPhotoMutation,
 } from "../../services/houseApi";
 import { CreateHouseInput } from "../../types/house";
 import InputField from "../../components/input-field";

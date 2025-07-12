@@ -47,7 +47,7 @@ export const houseApi = createApi({
                 method: 'PUT',
                 body: data
             }),
-            invalidatesTags: (result, error, { id }) => [{ type: "House", id }],
+            invalidatesTags: (result, error, slug) => [{ type: "House", slug }],
             async onQueryStarted(arg, { dispatch, queryFulfilled }) {
                 try {
                     await queryFulfilled;
