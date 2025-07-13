@@ -21,7 +21,7 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
   const [bachelorsAllowed, setBachelorsAllowed] = useState(false);
   const [available, setAvailable] = useState(false);
   const [sortBy, setSortBy] = useState("-createdAt");
-  const [range, setRange] = useState<[number, number]>([100, 800]);
+  const [range, setRange] = useState<[number, number]>([0, 2000]);
   const debouncedRange = useDebounce(range, 500);
   const debouncedSearchValue = useDebounce(searchValue, 1000);
   useEffect(() => {
@@ -129,7 +129,7 @@ const House: FC<HouseProps> = ({ filterOpen }) => {
               label: "Price Range",
               value: range,
               min: 0,
-              max: 1000,
+              max: 2000,
               step: 10,
               onChange: (val: [number, number]) => {
                 setRange(val);
