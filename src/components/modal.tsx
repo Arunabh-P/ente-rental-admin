@@ -35,15 +35,12 @@ export const Modal: FC<ModalProps> = ({ children, isOpen, onClose }) => {
               }}
             >
               <div className="p-6  w-fit ">
-                <div className="flex justify-between items-center mb-4">
                   <button
                     onClick={onClose}
                     className="text-gray-600 hover:text-gray-900 cursor-pointer"
                   >
                     ✕
                   </button>
-                </div>
-
                 <div>{children}</div>
               </div>
             </div>
