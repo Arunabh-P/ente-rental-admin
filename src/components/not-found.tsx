@@ -19,7 +19,7 @@ const NotFound: FC<NotFoundProps> = ({ text, statusCode, backTo }) => {
     }
   }, [backTo]);
   return (
-    <div className="w-full min-h-[450px] lg:min-h-[500px] flex flex-col justify-center items-center">
+    <div className="w-full h-[95vh] md:h-[450px] lg:h-[500px] flex flex-col justify-center items-center">
       <DotLottieReact
         src="https://lottie.host/9df49540-7b2f-4778-9cea-fced5c2e886d/JvZxohhxDy.lottie"
         loop
