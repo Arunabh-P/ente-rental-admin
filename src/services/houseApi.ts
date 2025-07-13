@@ -14,7 +14,7 @@ export const houseApi = createApi({
         params,
       }),
       providesTags: ["House"],
-      transformResponse: (response: PaginatedHouseResponse) => response,
+      transformResponse: (response: PaginatedHouseResponse) => response.data,
     }),
     getHouseById: builder.query({
       query: (id) => `${id}`,
