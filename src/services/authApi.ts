@@ -11,9 +11,7 @@ type AdminDto = {
 type responseDto = {
   success: boolean;
   message: string;
-  data: {
-    user: AdminDto;
-  };
+  data:  AdminDto;
 };
 
 type RequestDto = {
@@ -33,7 +31,7 @@ export const authApi = createApi({
       async onQueryStarted(arg, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
-          dispatch(setAdmin(data.data.user));
+          dispatch(setAdmin(data.data));
         } catch (error) {
           dispatch(
             showToast({
