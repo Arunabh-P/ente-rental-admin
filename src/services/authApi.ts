@@ -21,7 +21,7 @@ type RequestDto = {
 };
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl}/admin` }),
+  baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl}/admin`,credentials: 'include',  }),
   endpoints: (builder) => ({
     adminLogin: builder.mutation<responseDto, RequestDto>({
       query: ({ email, password }) => ({
