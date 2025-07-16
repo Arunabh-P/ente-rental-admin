@@ -42,7 +42,27 @@ export const authApi = createApi({
         }
       },
     }),
+    getAuthDetails: builder.query<responseDto, void>({
+      query: () => ({
+        url: "/admin/auth-details",
+        method: "GET",
+        credentials: "include",
+      }),
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          const { data } = await queryFulfilled;
+          dispatch(setAdmin(data.data));
+        } catch (error) {
+          dispatch(
+            showToast({
+              title: "Error",
+              message:  "Session expired or unauthorized",
+            })
+          );
+        }
+      },
+    }),
   }),
 });
 
-export const { useAdminLoginMutation } = authApi;
+export const { useAdminLoginMutation,useGetAuthDetailsQuery } = authApi;

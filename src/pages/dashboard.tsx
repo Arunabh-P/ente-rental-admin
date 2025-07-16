@@ -3,7 +3,7 @@ import HeightliteCard from '../components/highlite-card';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import Login from './login';
-import { useGetAuthDetailsQuery } from '../services/auth-detail-api';
+import { useGetAuthDetailsQuery } from '../services/authApi';
 
 const Dashboard = () => {
   const admin = useSelector((state: RootState) => state.auth.admin);
