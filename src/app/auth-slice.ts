@@ -19,7 +19,7 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setAdmin(state, action: PayloadAction<AdminDto>) {
+    setAdmin(state, action: PayloadAction<AdminDto | null>) {
       state.admin = action.payload;
     },
     logout(state) {

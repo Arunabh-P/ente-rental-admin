@@ -10,7 +10,6 @@ import { getError } from "../helpers/get-error";
 const SingleHouse = () => {
   const { slug } = useParams();
   const { data, isLoading, error } = useGetHouseBySlugQuery(slug);
-  console.log(error, "error");
   const images = data?.images || [];
   if (isLoading)
     return (

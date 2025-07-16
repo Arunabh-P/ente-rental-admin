@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HeightliteCard from '../components/highlite-card';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import Login from './login';
 import { useGetAuthDetailsQuery } from '../services/authDetailsApi';
+import { hideLoader, showLoader } from '../app/loader-slice';
 
 const Dashboard = () => {
+    const dispatch = useDispatch();
   const admin = useSelector((state: RootState) => state.auth.admin);
   const { isLoading, isError } = useGetAuthDetailsQuery(undefined, {
     skip: !!admin,
   });
+  useEffect(() => {
+    if (isLoading) {
+      dispatch(showLoader());
+    } else {
+      dispatch(hideLoader());
+    }
+  }, [isLoading]);
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <div className='h-screen'></div>;
   if (isError || !admin) return <Login />;
 
   return (

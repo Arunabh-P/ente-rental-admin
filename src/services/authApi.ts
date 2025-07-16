@@ -8,6 +8,7 @@ type AdminDto = {
   email: string;
   role: string;
 };
+
 type responseDto = {
   success: boolean;
   message: string;
@@ -42,9 +43,35 @@ export const authApi = createApi({
           );
         }
       },
+    }),
+    logoutAdmin:builder.mutation<{success:boolean;message:string},void>({
+      query:()=>({
+        url:"/logout",
+        method:"POST"
+      }),
+      async onQueryStarted(_,{dispatch,queryFulfilled}){
+        try {
+          await queryFulfilled;
+          dispatch(setAdmin(null));
+          dispatch(
+            showToast({
+              title: "Logout Successful",
+              message: "You have been logged out",
+            })
+          );
+
+        } catch (error) {
+          dispatch(
+            showToast({
+              title: "Logout Failed",
+              message: error?.error?.data?.message || "Something went wrong",
+            })
+          );
+        }
+      }
     })
     
   }),
 });
 
-export const { useAdminLoginMutation } = authApi;
+export const { useAdminLoginMutation,useLogoutAdminMutation } = authApi;
