@@ -1,7 +1,7 @@
-import { createApi } from "@reduxjs/toolkit/query/react";
-import baseQueryWithReauth from "../utils/fetch-base-querry";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { setAdmin } from "../app/auth-slice";
 import { showToast } from "../app/tost-slice";
+import { baseUrl } from "../utils/envVariables";
 type AdminDto = {
   id: string;
   name: string;
@@ -20,11 +20,11 @@ type RequestDto = {
 };
 export const authApi = createApi({
   reducerPath: "authApi",
-  baseQuery: baseQueryWithReauth,
+  baseQuery: fetchBaseQuery({ baseUrl: `${baseUrl}/admin` }),
   endpoints: (builder) => ({
     adminLogin: builder.mutation<responseDto, RequestDto>({
       query: ({ email, password }) => ({
-        url: "/admin/login",
+        url: "/login",
         method: "POST",
         body: { email, password },
       }),
@@ -33,36 +33,18 @@ export const authApi = createApi({
           const { data } = await queryFulfilled;
           dispatch(setAdmin(data.data));
         } catch (error) {
+          console.log(error,'error');
           dispatch(
             showToast({
               title: "Error",
-              message: error?.error || "Failed to Login",
+              message: error?.error.data.message || "Failed to Login",
             })
           );
         }
       },
-    }),
-    getAuthDetails: builder.query<responseDto, void>({
-      query: () => ({
-        url: "/admin/auth-details",
-        method: "GET",
-        credentials: "include",
-      }),
-      async onQueryStarted(_, { dispatch, queryFulfilled }) {
-        try {
-          const { data } = await queryFulfilled;
-          dispatch(setAdmin(data.data));
-        } catch (error) {
-          dispatch(
-            showToast({
-              title: "Error",
-              message:  "Session expired or unauthorized",
-            })
-          );
-        }
-      },
-    }),
+    })
+    
   }),
 });
 
-export const { useAdminLoginMutation,useGetAuthDetailsQuery } = authApi;
+export const { useAdminLoginMutation } = authApi;

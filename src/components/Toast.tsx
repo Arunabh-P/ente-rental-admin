@@ -25,8 +25,8 @@ const Toast = () => {
       }`}
     >
       <div className="flex-1">
-        <p className="font-medium">{title}</p>
-        <p className="font-normal">{message}</p>
+        <p className="font-medium">{title??""}</p>
+        <p className="font-normal">{message??""}</p>
       </div>
 
       <button

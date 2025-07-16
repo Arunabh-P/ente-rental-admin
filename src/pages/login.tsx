@@ -7,30 +7,20 @@ import { showToast } from '../app/tost-slice';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [login, { isLoading }] = useAdminLoginMutation();
+  const [adminLogin, { isLoading }] = useAdminLoginMutation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-
-    try {
-      const user = await login({ email, password }).unwrap();
+      const user = await adminLogin({ email, password }).unwrap();
       dispatch(
         showToast({
           title: 'Login Successful',
-          message: `Welcome, ${user.name}`,
+          message: `Welcome, ${user.data.name}`,
         })
       );
       navigate('/');
-    } catch (error: any) {
-      dispatch(
-        showToast({
-          title: 'Login Failed',
-          message: error?.data || 'Invalid email or password',
-        })
-      );
-    }
   };
 
   return (

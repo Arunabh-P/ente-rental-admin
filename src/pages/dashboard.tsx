@@ -3,15 +3,13 @@ import HeightliteCard from '../components/highlite-card';
 import { useSelector } from 'react-redux';
 import { RootState } from '../app/store';
 import Login from './login';
-import { useGetAuthDetailsQuery } from '../services/authApi';
+import { useGetAuthDetailsQuery } from '../services/authDetailsApi';
 
 const Dashboard = () => {
   const admin = useSelector((state: RootState) => state.auth.admin);
   const { isLoading, isError } = useGetAuthDetailsQuery(undefined, {
     skip: !!admin,
   });
-  console.log(admin,'admin');
-  
 
   if (isLoading) return <div>Loading...</div>;
   if (isError || !admin) return <Login />;
